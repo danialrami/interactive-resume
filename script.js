@@ -748,3 +748,76 @@ document.addEventListener('DOMContentLoaded', function() {
       yearSpan.textContent = new Date().getFullYear();
     }
   });
+
+  // Function to scroll the navigation to show the active section
+function scrollNavToActiveItem() {
+    // Get the active nav link
+    const activeLink = document.querySelector('.nav-links a.active');
+    
+    if (activeLink) {
+      // Get the nav links container
+      const navLinksContainer = document.querySelector('.nav-links');
+      
+      // Get the position of the active link relative to the container
+      const activeLinkPosition = activeLink.parentElement.offsetLeft;
+      
+      // Calculate the center position to scroll to
+      // This will center the active item in the viewport
+      const scrollPosition = activeLinkPosition - (navLinksContainer.offsetWidth / 2) + (activeLink.offsetWidth / 2);
+      
+      // Scroll smoothly to the position
+      navLinksContainer.scrollTo({
+        left: Math.max(0, scrollPosition),
+        behavior: 'smooth'
+      });
+    }
+  }
+  
+  // Call this function whenever a section becomes active
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initial scroll to active item on page load
+    scrollNavToActiveItem();
+    
+    // Create an observer for section visibility
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Get the id of the visible section
+          const sectionId = entry.target.id;
+          
+          // Update active class on nav links
+          document.querySelectorAll('.nav-links a').forEach(link => {
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+          
+          // Scroll nav to show the active item
+          scrollNavToActiveItem();
+        }
+      });
+    }, { threshold: 0.5 }); // Section is considered active when 50% visible
+    
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Add click event listeners to nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Smooth scroll already handled by CSS (scroll-behavior: smooth)
+        
+        // Update active class
+        document.querySelectorAll('.nav-links a').forEach(navLink => {
+          navLink.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // Scroll nav to show the active item
+        setTimeout(scrollNavToActiveItem, 100);
+      });
+    });
+  });
