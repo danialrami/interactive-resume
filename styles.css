@@ -590,18 +590,89 @@ footer {
 
 /* Media Queries */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
+    /* Container padding adjustment */
+    .container {
+        padding: 0 1.5rem;
     }
     
+    /* Improved navigation layout */
+    nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    /* Logo area adjustments */
+    .logo-link {
+        margin-right: auto;
+        flex-shrink: 0;
+    }
+    
+    .logo {
+        transform: scale(0.9);
+        margin: 0;
+    }
+    
+    .brand-text {
+        font-size: 1.25rem;
+    }
+    
+    /* Horizontal scrolling navigation */
     .nav-links {
-        margin-top: 1rem;
+        width: 100%;
+        margin: 0.75rem 0 0 0;
+        padding: 0.5rem 0;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
     }
     
     .nav-links li {
-        margin: 0 0.5rem;
+        margin: 0 1.5rem 0 0;
+        padding: 0.25rem 0;
     }
     
+    .nav-links li:first-child {
+        margin-left: 0.5rem;
+    }
+    
+    .nav-links li:last-child {
+        margin-right: 1.5rem; /* Add padding at the end */
+    }
+    
+    /* Enhanced active state */
+    .nav-links a.active::after {
+        height: 3px;
+    }
+    
+    /* Projects section improvements */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-item {
+        padding: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .project-item h3 {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+    
+    .project-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Other mobile adjustments */
     .audio-controls {
         flex-direction: column;
     }
@@ -611,7 +682,6 @@ footer {
     }
     
     .skills-grid,
-    .projects-grid,
     .certifications {
         grid-template-columns: 1fr;
     }
@@ -626,6 +696,37 @@ footer {
     
     .timeline-dot {
         left: 10px;
+    }
+}
+
+/* Extra adjustments for very small screens */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .logo svg {
+        width: 40px;
+        height: 40px;
+        margin-right: 0.5rem;
+    }
+    
+    .brand-text {
+        font-size: 1.1rem;
+    }
+    
+    .color-squares {
+        margin-left: 0.5rem;
+    }
+    
+    .square {
+        width: 8px;
+        height: 8px;
+        margin-right: 3px;
+    }
+    
+    .project-item h3 {
+        font-size: 1.1rem;
     }
 }
 
