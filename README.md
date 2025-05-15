@@ -1,6 +1,6 @@
 # Interactive Audio Resume
 
-An interactive web-based resume for Daniel Ramirez.
+An interactive web-based resume
 
 ## Live
 
