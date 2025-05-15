@@ -680,66 +680,66 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Play sound effect for skill items
-function playSkillSound(soundType) {
-    if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    
-    // Create oscillator
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    // Set oscillator type and frequency based on sound type
-    switch (soundType) {
-        case 'wwise':
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
-            break;
-        case 'daw':
-            oscillator.type = 'triangle';
-            oscillator.frequency.setValueAtTime(330, audioContext.currentTime);
-            break;
-        case 'maxmsp':
-            oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(523, audioContext.currentTime);
-            break;
-        case 'modular':
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(277, audioContext.currentTime);
-            break;
-        case 'gameengine':
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(587, audioContext.currentTime);
-            break;
-        case 'python':
-            oscillator.type = 'triangle';
-            oscillator.frequency.setValueAtTime(392, audioContext.currentTime);
-            break;
-        case 'node':
-            oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(349, audioContext.currentTime);
-            break;
-        case 'tools':
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(466, audioContext.currentTime);
-            break;
-        default:
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
-    }
-    
-    // Set gain (volume)
-    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-    
-    // Connect nodes
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    // Start and stop oscillator
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.5);
-}
+// function playSkillSound(soundType) {
+//     if (!audioContext) {
+//         audioContext = new (window.AudioContext || window.webkitAudioContext)();
+//     }
+//     
+//     // Create oscillator
+//     const oscillator = audioContext.createOscillator();
+//     const gainNode = audioContext.createGain();
+//     
+//     // Set oscillator type and frequency based on sound type
+//     switch (soundType) {
+//         case 'wwise':
+//             oscillator.type = 'sine';
+//             oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+//             break;
+//         case 'daw':
+//             oscillator.type = 'triangle';
+//             oscillator.frequency.setValueAtTime(330, audioContext.currentTime);
+//             break;
+//         case 'maxmsp':
+//             oscillator.type = 'square';
+//             oscillator.frequency.setValueAtTime(523, audioContext.currentTime);
+//             break;
+//         case 'modular':
+//             oscillator.type = 'sawtooth';
+//             oscillator.frequency.setValueAtTime(277, audioContext.currentTime);
+//             break;
+//         case 'gameengine':
+//             oscillator.type = 'sine';
+//             oscillator.frequency.setValueAtTime(587, audioContext.currentTime);
+//             break;
+//         case 'python':
+//             oscillator.type = 'triangle';
+//             oscillator.frequency.setValueAtTime(392, audioContext.currentTime);
+//             break;
+//         case 'node':
+//             oscillator.type = 'square';
+//             oscillator.frequency.setValueAtTime(349, audioContext.currentTime);
+//             break;
+//         case 'tools':
+//             oscillator.type = 'sawtooth';
+//             oscillator.frequency.setValueAtTime(466, audioContext.currentTime);
+//             break;
+//         default:
+//             oscillator.type = 'sine';
+//             oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+//     }
+//     
+//     // Set gain (volume)
+//     gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+//     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+//     
+//     // Connect nodes
+//     oscillator.connect(gainNode);
+//     gainNode.connect(audioContext.destination);
+//     
+//     // Start and stop oscillator
+//     oscillator.start();
+//     oscillator.stop(audioContext.currentTime + 0.5);
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
     // Update copyright year in footer
